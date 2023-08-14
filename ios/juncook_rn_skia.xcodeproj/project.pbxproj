@@ -11,6 +11,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		7A00A1DE2A8A2586006E1A87 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00A1DD2A8A2586006E1A87 /* Counter.swift */; };
+		7A00A1E02A8A27D9006E1A87 /* CounterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A00A1DF2A8A27D9006E1A87 /* CounterManager.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		973D17DFDC26E0165D336A80 /* libPods-juncook_rn_skia-juncook_rn_skiaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF71F665E03DA0536BD5A83C /* libPods-juncook_rn_skia-juncook_rn_skiaTests.a */; };
 		BE2E6285DC8B150975A3F5F7 /* libPods-juncook_rn_skia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4B07B8AFDAD5CCBAD75D59 /* libPods-juncook_rn_skia.a */; };
@@ -37,6 +39,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = juncook_rn_skia/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = juncook_rn_skia/main.m; sourceTree = "<group>"; };
 		6BC804D293D2B692FDB6FEE2 /* Pods-juncook_rn_skia-juncook_rn_skiaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juncook_rn_skia-juncook_rn_skiaTests.release.xcconfig"; path = "Target Support Files/Pods-juncook_rn_skia-juncook_rn_skiaTests/Pods-juncook_rn_skia-juncook_rn_skiaTests.release.xcconfig"; sourceTree = "<group>"; };
+		7A00A1DC2A8A2585006E1A87 /* juncook_rn_skia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "juncook_rn_skia-Bridging-Header.h"; sourceTree = "<group>"; };
+		7A00A1DD2A8A2586006E1A87 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		7A00A1DF2A8A27D9006E1A87 /* CounterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CounterManager.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = juncook_rn_skia/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D4B07B8AFDAD5CCBAD75D59 /* libPods-juncook_rn_skia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-juncook_rn_skia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28A0E9BCD994BB3FD840685 /* Pods-juncook_rn_skia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juncook_rn_skia.release.xcconfig"; path = "Target Support Files/Pods-juncook_rn_skia/Pods-juncook_rn_skia.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +111,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7A00A1DB2A8A2569006E1A87 /* NativeModule */ = {
+			isa = PBXGroup;
+			children = (
+				7A00A1DD2A8A2586006E1A87 /* Counter.swift */,
+				7A00A1DC2A8A2585006E1A87 /* juncook_rn_skia-Bridging-Header.h */,
+				7A00A1DF2A8A27D9006E1A87 /* CounterManager.m */,
+			);
+			path = NativeModule;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +131,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7A00A1DB2A8A2569006E1A87 /* NativeModule */,
 				13B07FAE1A68108700A75B9A /* juncook_rn_skia */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* juncook_rn_skiaTests */,
@@ -207,7 +223,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -414,6 +430,8 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				7A00A1E02A8A27D9006E1A87 /* CounterManager.m in Sources */,
+				7A00A1DE2A8A2586006E1A87 /* Counter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B42C62DA33C479FD57A223CD /* Pods-juncook_rn_skia-juncook_rn_skiaTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -459,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6BC804D293D2B692FDB6FEE2 /* Pods-juncook_rn_skia-juncook_rn_skiaTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = juncook_rn_skiaTests/Info.plist;
@@ -501,6 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = juncook_rn_skia;
+				SWIFT_OBJC_BRIDGING_HEADER = "NativeModule/juncook_rn_skia-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -528,6 +549,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = juncook_rn_skia;
+				SWIFT_OBJC_BRIDGING_HEADER = "NativeModule/juncook_rn_skia-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
