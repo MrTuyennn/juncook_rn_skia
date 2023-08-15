@@ -30,7 +30,7 @@ const App = () => {
   return (
     <NavigationContainer theme={NavigationTheme}>
       <SafeAreaProvider>
-        <Block flex={1} justify="center" align="center">
+        <Block backgroundColor="white" flex={1} justify="center" align="center">
           <Text>{count}</Text>
           <TouchableOpacity style={styles.buttonContainer} onPress={increment}>
             <Text color={'white'}>Cộng nè</Text>
