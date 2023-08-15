@@ -1,34 +1,16 @@
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Block, Text} from './components';
-import {
-  NativeModules,
-  StyleSheet,
-  TouchableOpacity,
-  NativeEventEmitter,
-} from 'react-native';
+import {NativeModules, StyleSheet, TouchableOpacity} from 'react-native';
 import {useTheme} from './theme';
 import {NavigationContainer} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
-
-const CounterEvents = new NativeEventEmitter(NativeModules.Counter);
 
 const App = () => {
   const {NavigationTheme} = useTheme();
 
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    CounterEvents.addListener('onIncrement', result =>
-      console.log('onIncrement received', result),
-    );
-    CounterEvents.addListener('onDecrement', result =>
-      console.log('onDecrement received', result),
-    );
-
-    return () => {
-      CounterEvents.removeAllListeners();
-    };
-  }, []);
+  useEffect(() => {}, []);
 
   const increment = () => {
     NativeModules.Counter.increment((value: any) => {
@@ -39,7 +21,7 @@ const App = () => {
   const decrement = async () => {
     try {
       var result = await NativeModules.Counter.decrement();
-      console.log('result', result);
+      setCount(result);
     } catch (e: any) {
       console.log(e.message, e.code);
     }
