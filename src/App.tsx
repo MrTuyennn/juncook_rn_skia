@@ -1,9 +1,16 @@
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Block, Text} from './components';
-import {NativeModules, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  NativeModules,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  requireNativeComponent,
+} from 'react-native';
 import {useTheme} from './theme';
 import {NavigationContainer} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
+const ExoPlayer = requireNativeComponent('ExoPlayer');
 
 const App = () => {
   const {NavigationTheme} = useTheme();
@@ -11,6 +18,8 @@ const App = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {}, []);
+
+  console.log('ExoPlayer', ExoPlayer);
 
   const increment = () => {
     NativeModules.Counter.increment((value: any) => {
@@ -31,6 +40,9 @@ const App = () => {
     <NavigationContainer theme={NavigationTheme}>
       <SafeAreaProvider>
         <Block backgroundColor="white" flex={1} justify="center" align="center">
+          <View>
+            <ExoPlayer style={{height: 100, width: 100}} />
+          </View>
           <Text>{count}</Text>
           <TouchableOpacity style={styles.buttonContainer} onPress={increment}>
             <Text color={'white'}>Cộng nè</Text>
