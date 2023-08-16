@@ -4,8 +4,9 @@ import android.content.Context
 import android.view.View
 import android.widget.FrameLayout
 import androidx.compose.ui.platform.ComposeView
+import com.facebook.react.uimanager.ThemedReactContext
 
-class ModViewContainer(context: Context) : FrameLayout(context){
+class ModViewContainer(context: ThemedReactContext) : FrameLayout(context){
     private val rootView = findViewById<View>(android.R.id.content)
 
     init {

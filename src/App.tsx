@@ -2,15 +2,20 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Block, Text} from './components';
 import {
   NativeModules,
+  StyleProp,
   StyleSheet,
   TouchableOpacity,
   View,
+  ViewStyle,
   requireNativeComponent,
 } from 'react-native';
 import {useTheme} from './theme';
 import {NavigationContainer} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
-const ExoPlayer = requireNativeComponent('ExoPlayer');
+interface ExoPlayerViewProps {
+  style?: StyleProp<ViewStyle>;
+}
+const ExoPlayer = requireNativeComponent<ExoPlayerViewProps>('ExoPlayer');
 
 const App = () => {
   const {NavigationTheme} = useTheme();
@@ -41,7 +46,13 @@ const App = () => {
       <SafeAreaProvider>
         <Block backgroundColor="white" flex={1} justify="center" align="center">
           <View>
-            <ExoPlayer style={{height: 100, width: 100}} />
+            <ExoPlayer
+              style={{
+                height: 100,
+                width: 100,
+                backgroundColor: 'red',
+              }}
+            />
           </View>
           <Text>{count}</Text>
           <TouchableOpacity style={styles.buttonContainer} onPress={increment}>
