@@ -14,6 +14,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 interface ExoPlayerViewProps {
   style?: StyleProp<ViewStyle>;
+  text: string;
 }
 const ExoPlayer = requireNativeComponent<ExoPlayerViewProps>('ExoPlayer');
 
@@ -47,6 +48,7 @@ const App = () => {
         <Block backgroundColor="white" flex={1} justify="center" align="center">
           <View>
             <ExoPlayer
+              text="Exo Player for Tuyennn"
               style={{
                 height: 100,
                 width: 100,

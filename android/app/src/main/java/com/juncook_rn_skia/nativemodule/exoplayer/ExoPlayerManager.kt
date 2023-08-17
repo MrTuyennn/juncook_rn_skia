@@ -1,27 +1,35 @@
 package com.juncook_rn_skia.nativemodule.exoplayer
 
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.compose.ui.platform.ComposeView
-import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
 
 
-class ExoPlayerManager: SimpleViewManager<ModViewContainer>() {
+class ExoPlayerManager(reactContext: ReactApplicationContext) : SimpleViewManager<LinearLayout>() {
 
     override fun getName(): String {
         return "ExoPlayer"
     }
 
     @Override
-    override fun createViewInstance(context: ThemedReactContext): ModViewContainer {
-       return ModViewContainer(context)
+    override fun createViewInstance(context: ThemedReactContext): LinearLayout {
+        val layout = LinearLayout(context)
+        layout.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        val composeView = ComposeView(context)
+        layout.addView(composeView)
+        return layout
     }
 
-    @ReactProp(name = "style")
-    fun setStyle(composeView: ModViewContainer?, style: ReadableMap?) {
-        // Here you can handle style properties passed from React Native.
-        // You might need to parse the style object and apply it to your ComposeView.
+    @ReactProp(name = "text")
+    fun setText(layout: LinearLayout, text: String?) {
+        val composeView = layout.getChildAt(0) as ComposeView
+        composeView.setContent {
+            ModView(text = text)
+        }
     }
 
 }
