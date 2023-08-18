@@ -13,6 +13,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7A00A1DE2A8A2586006E1A87 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00A1DD2A8A2586006E1A87 /* Counter.swift */; };
 		7A00A1E02A8A27D9006E1A87 /* CounterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A00A1DF2A8A27D9006E1A87 /* CounterManager.m */; };
+		7A00A1E42A8E78CE006E1A87 /* ExoPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00A1E32A8E78CE006E1A87 /* ExoPlayerManager.swift */; };
+		7A00A1E72A8E78F1006E1A87 /* ExoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A00A1E62A8E78F1006E1A87 /* ExoPlayerManager.m */; };
+		7A00A1E92A8E8475006E1A87 /* ExoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00A1E82A8E8475006E1A87 /* ExoPlayerView.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		973D17DFDC26E0165D336A80 /* libPods-juncook_rn_skia-juncook_rn_skiaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF71F665E03DA0536BD5A83C /* libPods-juncook_rn_skia-juncook_rn_skiaTests.a */; };
 		BE2E6285DC8B150975A3F5F7 /* libPods-juncook_rn_skia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4B07B8AFDAD5CCBAD75D59 /* libPods-juncook_rn_skia.a */; };
@@ -42,6 +45,9 @@
 		7A00A1DC2A8A2585006E1A87 /* juncook_rn_skia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "juncook_rn_skia-Bridging-Header.h"; sourceTree = "<group>"; };
 		7A00A1DD2A8A2586006E1A87 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		7A00A1DF2A8A27D9006E1A87 /* CounterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CounterManager.m; sourceTree = "<group>"; };
+		7A00A1E32A8E78CE006E1A87 /* ExoPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExoPlayerManager.swift; sourceTree = "<group>"; };
+		7A00A1E62A8E78F1006E1A87 /* ExoPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExoPlayerManager.m; sourceTree = "<group>"; };
+		7A00A1E82A8E8475006E1A87 /* ExoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExoPlayerView.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = juncook_rn_skia/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D4B07B8AFDAD5CCBAD75D59 /* libPods-juncook_rn_skia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-juncook_rn_skia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28A0E9BCD994BB3FD840685 /* Pods-juncook_rn_skia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-juncook_rn_skia.release.xcconfig"; path = "Target Support Files/Pods-juncook_rn_skia/Pods-juncook_rn_skia.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,11 +120,30 @@
 		7A00A1DB2A8A2569006E1A87 /* NativeModule */ = {
 			isa = PBXGroup;
 			children = (
-				7A00A1DD2A8A2586006E1A87 /* Counter.swift */,
+				7A00A1E22A8E7839006E1A87 /* ExoPlayer */,
+				7A00A1E12A8E77D7006E1A87 /* Counter */,
 				7A00A1DC2A8A2585006E1A87 /* juncook_rn_skia-Bridging-Header.h */,
-				7A00A1DF2A8A27D9006E1A87 /* CounterManager.m */,
 			);
 			path = NativeModule;
+			sourceTree = "<group>";
+		};
+		7A00A1E12A8E77D7006E1A87 /* Counter */ = {
+			isa = PBXGroup;
+			children = (
+				7A00A1DF2A8A27D9006E1A87 /* CounterManager.m */,
+				7A00A1DD2A8A2586006E1A87 /* Counter.swift */,
+			);
+			path = Counter;
+			sourceTree = "<group>";
+		};
+		7A00A1E22A8E7839006E1A87 /* ExoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				7A00A1E32A8E78CE006E1A87 /* ExoPlayerManager.swift */,
+				7A00A1E62A8E78F1006E1A87 /* ExoPlayerManager.m */,
+				7A00A1E82A8E8475006E1A87 /* ExoPlayerView.swift */,
+			);
+			path = ExoPlayer;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -432,6 +457,9 @@
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				7A00A1E02A8A27D9006E1A87 /* CounterManager.m in Sources */,
 				7A00A1DE2A8A2586006E1A87 /* Counter.swift in Sources */,
+				7A00A1E42A8E78CE006E1A87 /* ExoPlayerManager.swift in Sources */,
+				7A00A1E92A8E8475006E1A87 /* ExoPlayerView.swift in Sources */,
+				7A00A1E72A8E78F1006E1A87 /* ExoPlayerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
