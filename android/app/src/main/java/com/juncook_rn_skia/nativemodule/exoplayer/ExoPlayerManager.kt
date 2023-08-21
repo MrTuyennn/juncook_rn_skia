@@ -24,11 +24,11 @@ class ExoPlayerManager(reactContext: ReactApplicationContext) : SimpleViewManage
         return layout
     }
 
-    @ReactProp(name = "text")
-    fun setText(layout: LinearLayout, text: String?) {
+    @ReactProp(name = "linkVideo")
+    fun setText(layout: LinearLayout, linkVideo: String?) {
         val composeView = layout.getChildAt(0) as ComposeView
         composeView.setContent {
-            ModView(text = text)
+            ModView(link = linkVideo)
         }
     }
 

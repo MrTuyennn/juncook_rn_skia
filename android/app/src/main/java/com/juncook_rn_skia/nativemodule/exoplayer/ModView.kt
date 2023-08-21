@@ -1,5 +1,7 @@
 package com.juncook_rn_skia.nativemodule.exoplayer
 
+import android.net.Uri
+import android.util.Log
 import android.widget.FrameLayout
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,36 +17,39 @@ import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import android.view.ViewGroup
-import androidx.compose.material3.Text
 
 
 @Composable
-fun ModView(text:String?) {
+fun ModView(link:String?) {
+
+
+    val contextLocal = LocalContext.current
+    val contentUri: Uri = Uri.parse("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
+
+
+    // create our player
+    val exoPlayer = remember {
+
+            ExoPlayer.Builder(contextLocal).build().apply {
+                setMediaItem(
+                    MediaItem.fromUri("https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")
+                )
+                prepare()
+                playWhenReady = true
+            }
+
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val context = LocalContext.current
-
-        val exoPlayer = remember {
-            ExoPlayer.Builder(context).build().apply {
-                setMediaItem(
-                    MediaItem.fromUri(
-                        "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
-                    )
-                )
-                prepare()
-                playWhenReady = true
-            }
-        }
 
         Box(modifier = Modifier) {
             DisposableEffect(key1 = Unit) { onDispose { exoPlayer.release() } }
-
             AndroidView(
                 factory = {
-                    PlayerView(context).apply {
+                    PlayerView(contextLocal).apply {
                         player = exoPlayer
                         layoutParams =
                             FrameLayout.LayoutParams(
@@ -58,3 +63,15 @@ fun ModView(text:String?) {
         }
     }
 }
+
+//@Composable
+//fun MediaSource(uri : String?,overrideExtension: String?) {
+//    val type: Int? = uri?.let { Util.inferContentType(it) }
+//    return when (type) {
+//        C.TYPE_DASH -> DashMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+//        C.TYPE_SS -> SsMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+//        C.TYPE_HLS -> HlsMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+//        C.TYPE_OTHER -> ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+//        else -> throw IllegalStateException("Unsupported type: $type")
+//    }
+//}

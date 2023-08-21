@@ -1,6 +1,7 @@
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Block, Text} from './components';
 import {
+  Dimensions,
   NativeModules,
   StyleProp,
   StyleSheet,
@@ -14,7 +15,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 interface ExoPlayerViewProps {
   style?: StyleProp<ViewStyle>;
-  text?: string;
+  linkVideo?: string;
   onDidScanCard?: (event: any) => void;
 }
 const ExoPlayer = requireNativeComponent<ExoPlayerViewProps>('ExoPlayer');
@@ -49,9 +50,12 @@ const App = () => {
         <Block backgroundColor="white" flex={1} justify="center" align="center">
           <View>
             <ExoPlayer
+              linkVideo={
+                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4'
+              }
               style={{
-                height: 100,
-                width: 100,
+                height: Dimensions.get('screen').height / 3,
+                width: Dimensions.get('screen').width,
                 backgroundColor: 'red',
               }}
               onDidScanCard={(e: any) => console.log('==', e.nativeEvent)}
