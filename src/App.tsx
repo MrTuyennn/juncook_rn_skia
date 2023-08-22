@@ -47,28 +47,17 @@ const App = () => {
   return (
     <NavigationContainer theme={NavigationTheme}>
       <SafeAreaProvider>
-        <Block backgroundColor="white" flex={1} justify="center" align="center">
-          <View>
-            <ExoPlayer
-              linkVideo={
-                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4'
-              }
-              style={{
-                height: Dimensions.get('screen').height / 3,
-                width: Dimensions.get('screen').width,
-                backgroundColor: 'red',
-              }}
-              onDidScanCard={(e: any) => console.log('==', e.nativeEvent)}
-            />
-          </View>
-          <Text>{count}</Text>
-          <TouchableOpacity style={styles.buttonContainer} onPress={increment}>
-            <Text color={'white'}>Cộng nè</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={decrement}>
-            <Text color={'white'}>Trừ nè</Text>
-          </TouchableOpacity>
-        </Block>
+        <ExoPlayer
+          linkVideo={
+            'https://cdn-video.hanet.ai/hanet-camera-vn/video/upload/C22035C050/2023/08/21/2023-08-21-13-43-27.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWAMQB0V2PBI0C2AEUAB%2F20230821%2F%2Fs3%2Faws4_request&X-Amz-Date=20230821T071436Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=eb9f5580f72f0d933705d8670864fa11154a042758244ab9ec93f975d6d92d64'
+          }
+          style={{
+            height: (Dimensions.get('window').width * 9) / 16 + 50,
+            width: Dimensions.get('window').width,
+            backgroundColor: 'red',
+          }}
+          onDidScanCard={(e: any) => console.log('==', e.nativeEvent)}
+        />
       </SafeAreaProvider>
     </NavigationContainer>
   );
