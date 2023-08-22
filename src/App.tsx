@@ -52,7 +52,7 @@ const App = () => {
             'https://cdn-video.hanet.ai/hanet-camera-vn/video/upload/C22035C050/2023/08/21/2023-08-21-13-43-27.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWAMQB0V2PBI0C2AEUAB%2F20230821%2F%2Fs3%2Faws4_request&X-Amz-Date=20230821T071436Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&x-id=GetObject&X-Amz-Signature=eb9f5580f72f0d933705d8670864fa11154a042758244ab9ec93f975d6d92d64'
           }
           style={{
-            height: (Dimensions.get('window').width * 9) / 16 + 50,
+            height: (Dimensions.get('window').width * 9) / 16 + 100,
             width: Dimensions.get('window').width,
             backgroundColor: 'red',
           }}

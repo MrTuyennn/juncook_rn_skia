@@ -1,10 +1,7 @@
-package com.juncook_rn_skia.nativemodule.exoplayer
-import android.view.View
-import androidx.compose.foundation.background
+package com.juncook_rn_skia.nativemodule.exoplayer.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -14,9 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.juncook_rn_skia.R
-import com.juncook_rn_skia.nativemodule.exoplayer.components.LogoComponent
 import com.juncook_rn_skia.nativemodule.utils.Size
-import com.juncook_rn_skia.nativemodule.utils.theme.md_theme_dark_inversePrimary
 
 @Composable
 fun BoxControlVideo(
