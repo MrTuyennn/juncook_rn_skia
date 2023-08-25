@@ -54,7 +54,6 @@ const App = () => {
           style={{
             height: (Dimensions.get('window').width * 9) / 16 + 100,
             width: Dimensions.get('window').width,
-            backgroundColor: 'red',
           }}
           onDidScanCard={(e: any) => console.log('==', e.nativeEvent)}
         />
