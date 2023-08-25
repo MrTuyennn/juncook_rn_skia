@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Text
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
 import androidx.media3.common.util.Log
@@ -25,7 +24,6 @@ import com.juncook_rn_skia.nativemodule.exoplayer.components.SliderControlVideo
 import com.juncook_rn_skia.nativemodule.utils.Size
 import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
-import kotlin.OptIn;
 import kotlin.time.Duration.Companion.seconds
 
 

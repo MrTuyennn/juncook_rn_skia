@@ -3,12 +3,13 @@ package com.juncook_rn_skia.nativemodule.exoplayer
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.compose.ui.platform.ComposeView
+import androidx.media3.common.util.UnstableApi
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
 
-
+@UnstableApi
 class ExoPlayerManager(reactContext: ReactApplicationContext) : SimpleViewManager<LinearLayout>() {
 
     override fun getName(): String {
