@@ -29,7 +29,7 @@ class ExoPlayerManager(reactContext: ReactApplicationContext) : SimpleViewManage
     fun setText(layout: LinearLayout, linkVideo: String?) {
         val composeView = layout.getChildAt(0) as ComposeView
         composeView.setContent {
-            ModView(link = linkVideo)
+            ExoPlayerContainer(link = linkVideo)
         }
     }
 

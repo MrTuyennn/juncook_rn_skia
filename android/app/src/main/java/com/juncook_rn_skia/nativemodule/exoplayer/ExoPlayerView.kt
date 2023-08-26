@@ -32,7 +32,7 @@ private const val PLAYER_SEEK_FORWARD_INCREMENT = 5 * 1000L // 10 seconds
 
 @UnstableApi
 @Composable
-fun ModView(link:String?) {
+fun ExoPlayerView(link:String?) {
 
     val contextLocal = LocalContext.current
     // create our player
