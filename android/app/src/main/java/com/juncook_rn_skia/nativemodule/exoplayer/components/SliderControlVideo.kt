@@ -30,8 +30,6 @@ fun SliderControlVideo(
 
     val videoTime = remember(currentTime()) { currentTime() }
 
-    Log.i("videoTime","$videoTime")
-
     val buffer = remember(bufferPercentage()) { bufferPercentage() }
 
     Column(modifier = modifier.height(50.dp)) {
