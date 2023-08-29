@@ -20,49 +20,54 @@ import java.util.concurrent.TimeUnit
 
 @Composable
 fun SliderControlVideo(
-    modifier: Modifier = Modifier,
-    totalDuration: () -> Long,
-    currentTime: () -> Long,
-    bufferPercentage: () -> Int,
-    onSeekChanged: (timeMs: Float) -> Unit
+        modifier: Modifier = Modifier,
+        totalDuration: Long,
+        currentTime: Long,
+        bufferPercentage: () -> Int,
+        onSeekChanged: (timeMs: Float) -> Unit
 ) {
-    val duration = remember(totalDuration()) { totalDuration() }
+    val duration = remember(totalDuration) { totalDuration }
 
-    val videoTime = remember(currentTime()) { currentTime() }
+    val videoTime = remember(currentTime) { currentTime }
 
     val buffer = remember(bufferPercentage()) { bufferPercentage() }
+
 
     Column(modifier = modifier.height(50.dp)) {
         Box(modifier = Modifier.fillMaxWidth()) {
             // buffer bar
             Slider(
-                value = buffer.toFloat(),
-                enabled = false,
-                onValueChange = { /*do nothing*/},
-                valueRange = 0f..100f,
-                colors =
-                SliderDefaults.colors(
-                    disabledThumbColor = Color.Transparent,
-                    disabledActiveTrackColor = md_theme_light_onSurfaceVariant
-                )
+                    value = buffer.toFloat(),
+                    enabled = false,
+                    onValueChange = { /*do nothing*/ },
+                    valueRange = 0f..100f,
+                    colors =
+                    SliderDefaults.colors(
+                            disabledThumbColor = Color.Transparent,
+                            disabledActiveTrackColor = md_theme_light_onSurfaceVariant
+                    )
             )
-
-            // seek bar
-            Slider(
-                modifier = Modifier.fillMaxWidth(),
-                value = videoTime.toFloat(),
-                onValueChange = onSeekChanged,
-                valueRange = 0f..duration.toFloat(),
-                colors =
-                SliderDefaults.colors(
-                    thumbColor =md_theme_light_onPrimary,
-                    activeTickColor = md_theme_light_onPrimary,
-                    activeTrackColor =  md_theme_light_onPrimary,
+            if (totalDuration > 0) {
+                // seek bar
+                Slider(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = videoTime.toFloat(),
+                        onValueChange = onSeekChanged,
+                        valueRange = 0f..duration.toFloat(),
+                        colors =
+                        SliderDefaults.colors(
+                                thumbColor = md_theme_light_onPrimary,
+                                activeTickColor = md_theme_light_onPrimary,
+                                activeTrackColor = md_theme_light_onPrimary,
+                        )
                 )
-            )
+            }
         }
 
+
     }
+
+
 }
 
 fun Long.formatMinSec(): String {
@@ -70,12 +75,12 @@ fun Long.formatMinSec(): String {
         "..."
     } else {
         String.format(
-            "%02d:%02d",
-            TimeUnit.MILLISECONDS.toMinutes(this),
-            TimeUnit.MILLISECONDS.toSeconds(this) -
-                    TimeUnit.MINUTES.toSeconds(
-                        TimeUnit.MILLISECONDS.toMinutes(this)
-                    )
+                "%02d:%02d",
+                TimeUnit.MILLISECONDS.toMinutes(this),
+                TimeUnit.MILLISECONDS.toSeconds(this) -
+                        TimeUnit.MINUTES.toSeconds(
+                                TimeUnit.MILLISECONDS.toMinutes(this)
+                        )
         )
     }
 }

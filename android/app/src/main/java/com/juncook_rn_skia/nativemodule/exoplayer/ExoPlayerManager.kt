@@ -5,12 +5,15 @@ import android.widget.LinearLayout
 import androidx.compose.ui.platform.ComposeView
 import androidx.media3.common.util.UnstableApi
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
 
 @UnstableApi
 class ExoPlayerManager(reactContext: ReactApplicationContext) : SimpleViewManager<LinearLayout>() {
+
+    private val context = reactContext
 
     override fun getName(): String {
         return "ExoPlayer"
@@ -29,8 +32,19 @@ class ExoPlayerManager(reactContext: ReactApplicationContext) : SimpleViewManage
     fun setText(layout: LinearLayout, linkVideo: String?) {
         val composeView = layout.getChildAt(0) as ComposeView
         composeView.setContent {
-            ExoPlayerContainer(link = linkVideo)
+            ExoPlayerView(link = linkVideo, context = context)
         }
     }
+
+    override fun getExportedCustomBubblingEventTypeConstants(): Map<String, Any> {
+        return mapOf(
+            "topChange" to mapOf(
+                "phasedRegistrationNames" to mapOf(
+                    "bubbled" to "onChange"
+                )
+            )
+        )
+    }
+
 
 }

@@ -18,6 +18,8 @@ fun BoxControlVideo(
     onClickPlay : () -> Unit = {},
     onClickPrev : () -> Unit = {},
     onClickNext: () -> Unit = {},
+    onClickNextVideo:() -> Unit = {},
+    onClickPrevVideo:() -> Unit = {},
     isPlaying: () -> Boolean
 ) {
     val size = Size()
@@ -30,7 +32,7 @@ fun BoxControlVideo(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically){
         BoxComponent {
-            LogoComponent(image = R.drawable.lb_ic_skip_previous, size = 45.dp, onClick = { onClickPrev()})
+            LogoComponent(image = R.drawable.lb_ic_skip_previous, size = 45.dp, onClick = { onClickPrevVideo()})
         }
         BoxComponent {
             LogoComponent(image = R.drawable.quantum_ic_replay_10_white_24, size = 45.dp, onClick = { onClickPrev()})
@@ -46,7 +48,7 @@ fun BoxControlVideo(
             LogoComponent(image = R.drawable.quantum_ic_forward_10_white_24, size = 45.dp, onClick = { onClickNext()})
         }
         BoxComponent {
-            LogoComponent(image = R.drawable.lb_ic_skip_next, size = 45.dp, onClick = {onClickNext()})
+            LogoComponent(image = R.drawable.lb_ic_skip_next, size = 45.dp, onClick = {onClickNextVideo()})
         }
     }
 }

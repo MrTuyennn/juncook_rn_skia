@@ -25,6 +25,7 @@ fun ListVideoView() {
         Text(text = "Android", color = Color.Red)
         Text(text = "ngoc Duyen")
         Text(text = "ngoc Duyen")
+        Text(text = "ngoc Duyen")
     }
 }
 
