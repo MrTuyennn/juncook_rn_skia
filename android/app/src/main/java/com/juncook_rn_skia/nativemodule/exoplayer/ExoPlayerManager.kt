@@ -1,50 +1,80 @@
 package com.juncook_rn_skia.nativemodule.exoplayer
 
-import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.media3.common.util.Log
 import androidx.media3.common.util.UnstableApi
-import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReactContext
+import com.facebook.react.bridge.WritableMap
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
+import com.facebook.react.uimanager.events.RCTEventEmitter
 
 @UnstableApi
-class ExoPlayerManager(reactContext: ReactApplicationContext) : SimpleViewManager<LinearLayout>() {
+class ExoPlayerManager() : SimpleViewManager<ComposeView>() {
 
-    private val context = reactContext
+    private var context: ReactContext? = null
+    private var linkVideo: String = ""
 
     override fun getName(): String {
         return "ExoPlayer"
     }
 
-    @Override
-    override fun createViewInstance(context: ThemedReactContext): LinearLayout {
-        val layout = LinearLayout(context)
-        layout.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        val composeView = ComposeView(context)
-        layout.addView(composeView)
-        return layout
-    }
 
-    @ReactProp(name = "linkVideo")
-    fun setText(layout: LinearLayout, linkVideo: String?) {
-        val composeView = layout.getChildAt(0) as ComposeView
-        composeView.setContent {
-            ExoPlayerView(link = linkVideo, context = context)
+    @SuppressLint("SuspiciousIndentation")
+    override fun createViewInstance(context: ThemedReactContext): ComposeView {
+      this.context = context
+        return ComposeView(context).apply {
+               setContent {
+                   fun onNextVideo(): Unit {
+                       val reactContext = context as ReactContext
+                       val event: WritableMap = Arguments.createMap()
+                       reactContext.getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onNextVideo", event)
+                   }
+                   fun onPrevVideo(): Unit {
+                       val reactContext = context as ReactContext
+                       val event: WritableMap = Arguments.createMap()
+                       reactContext.getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "onPrevVideo", event)
+                   }
+                   ExoPlayerView(link = linkVideo, onNextVideo= { onNextVideo() },onPrevVideo={onPrevVideo()})
+               }
         }
     }
 
-    override fun getExportedCustomBubblingEventTypeConstants(): Map<String, Any> {
-        return mapOf(
-            "topChange" to mapOf(
-                "phasedRegistrationNames" to mapOf(
-                    "bubbled" to "onChange"
-                )
-            )
-        )
+    @ReactProp(name = "linkVideo")
+    fun setLinkVideo(view: ComposeView, linkVideo: String?) {
+        if (linkVideo != null) {
+            Log.i("Manager Video",linkVideo)
+            this.linkVideo = linkVideo
+            view.setContent {
+                fun onNextVideo(): Unit {
+                    val reactContext = context as ReactContext
+                    val event: WritableMap = Arguments.createMap()
+                    reactContext.getJSModule(RCTEventEmitter::class.java).receiveEvent(view.id, "onNextVideo", event)
+                }
+                fun onPrevVideo(): Unit {
+                    val reactContext = context as ReactContext
+                    val event: WritableMap = Arguments.createMap()
+                    reactContext.getJSModule(RCTEventEmitter::class.java).receiveEvent(view.id, "onPrevVideo", event)
+                }
+                ExoPlayerView(link = linkVideo, onNextVideo= { onNextVideo() },onPrevVideo={onPrevVideo()})
+            }
+        }
     }
 
+    override fun getExportedCustomDirectEventTypeConstants(): Map<String, Any>? {
+        return MapBuilder.builder<String, Any>()
+            .put("onNextVideo",
+                MapBuilder.of("registrationName", "onNextVideo"))
+            .put("onPrevVideo",
+                MapBuilder.of("registrationName", "onPrevVideo"))
+            .build()
+    }
 
 }

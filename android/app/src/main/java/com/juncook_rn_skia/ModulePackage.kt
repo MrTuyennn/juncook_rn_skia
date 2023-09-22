@@ -14,6 +14,6 @@ class ModulePackage: ReactPackage {
     ).toMutableList()
 
     override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-        return listOf(ExoPlayerManager(reactContext))
+        return listOf(ExoPlayerManager())
     }
 }

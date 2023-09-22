@@ -37,14 +37,9 @@ private const val PLAYER_SEEK_FORWARD_INCREMENT = 5 * 1000L // 10 seconds
 
 @UnstableApi
 @Composable
-fun ExoPlayerView(
-    link: String?,
-    context:Context
-) {
+fun ExoPlayerView(link: String?,onNextVideo:() -> Unit,onPrevVideo:() -> Unit) {
 
-    val reactContext = context as ReactContext
     val contextLocal = LocalContext.current
-    val viewId = LocalView.current.id
 
     val size = Size()
     val widthScreen = size.width()
@@ -92,7 +87,6 @@ fun ExoPlayerView(
             }
     }
 
-
     DisposableEffect(link) {
         exoPlayer.setMediaItem(MediaItem.fromUri("$link"))
         exoPlayer.prepare()
@@ -102,14 +96,7 @@ fun ExoPlayerView(
         }
     }
 
-    if (isPlaying) {
-        LaunchedEffect(Unit) {
-            while (true) {
-                currentTime = exoPlayer.currentPosition
-                delay(1.seconds / 30)
-            }
-        }
-    }
+
 
     Column {
         Box(
@@ -117,6 +104,14 @@ fun ExoPlayerView(
                 .height((widthScreen * 9 / 16).dp)
                 .width(widthScreen.dp)
         ) {
+            if (isPlaying) {
+                LaunchedEffect(Unit) {
+                    while (true) {
+                        currentTime = exoPlayer.currentPosition
+                        delay(1.seconds / 30)
+                    }
+                }
+            }
             AndroidView(
                 factory = {
                     PlayerView(contextLocal).apply {
@@ -142,16 +137,8 @@ fun ExoPlayerView(
         )
         //bottom control isPlay isPause
         BoxControlVideo(
-            onClickPrevVideo = {
-                reactContext
-                    .getJSModule(RCTEventEmitter::class.java)
-                    .receiveEvent(viewId, "topChange", null)
-            },
-            onClickNextVideo = {
-                reactContext
-                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-                    .emit("onNextVideo",null)
-            },
+            onClickPrevVideo = onPrevVideo,
+            onClickNextVideo = onNextVideo,
             onClickNext = {
                 exoPlayer.seekForward()
             },

@@ -1,24 +1,24 @@
-import { useTheme } from "@theme";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import {useTheme} from '@theme';
+import React, {forwardRef, useEffect, useRef, useState} from 'react';
 import {
   NativeSyntheticEvent,
   StyleSheet,
   TextInputFocusEventData,
   TouchableWithoutFeedback,
   ViewStyle,
-} from "react-native";
-import TextInputMask from "react-native-text-input-mask";
-import Block from "../Block";
-import IconComponent from "../Icon";
-import Text from "../Text";
-import { isIcon, isString } from "../utils";
-import { InputProps } from "./types";
+  TextInput,
+} from 'react-native';
+import Block from '../Block';
+import IconComponent from '../Icon';
+import Text from '../Text';
+import {isIcon, isString} from '../utils';
+import {InputProps} from './types';
 
 const MIN_HEIGHT_INPUT = 45;
 
-const TextInput = forwardRef<any, InputProps>((props, ref) => {
+const Input = forwardRef<any, InputProps>((props, ref) => {
   const inputRef = useRef<any>(null);
-  const { Colors, Fonts } = useTheme();
+  const {Colors, Fonts} = useTheme();
 
   const {
     label,
@@ -30,7 +30,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
     showError,
     inputContainerStyle,
     style,
-    fontType = "regular",
+    fontType = 'regular',
     size = 14,
     disabled,
     disabledInputStyle,
@@ -46,14 +46,14 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
     hideFocus,
     numberOfLines,
     maxLength,
-    value = "",
+    value = '',
     ...rest
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    if (ref && typeof ref !== "function") {
+    if (ref && typeof ref !== 'function') {
       (ref as any).current = inputRef.current;
     }
   }, [ref]);
@@ -61,7 +61,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
   const _renderLabel = () => {
     if (isString(label)) {
       return (
-        <Text margin={{ bottom: 4 }} color="primaryText" style={labelStyle}>
+        <Text margin={{bottom: 4}} color="primaryText" style={labelStyle}>
           {label}
           {required && <Text color="error"> *</Text>}
         </Text>
@@ -92,7 +92,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
       paddingLeft: leftIcon ? 0 : 16,
       paddingRight: rightIcon || props.secureTextEntry ? 0 : 16,
     },
-    disabled && { backgroundColor: Colors.disabled, color: Colors.placeholder },
+    disabled && {backgroundColor: Colors.disabled, color: Colors.placeholder},
     disabled && disabledInputStyle,
     !!numberOfLines && {
       height: size * 1.6 * numberOfLines,
@@ -107,7 +107,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
       minHeight: MIN_HEIGHT_INPUT,
       paddingHorizontal: 16,
       opacity: disabled ? 0.5 : 1,
-      justifyContent: "center" as ViewStyle["justifyContent"],
+      justifyContent: 'center' as ViewStyle['justifyContent'],
     };
 
     if (secureTextEntry && isRight && !rightIcon) {
@@ -116,9 +116,9 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
           style={defaultIconStyle}
           size={16}
           color={Colors.blueyGrey}
-          name={secureEye ? "eye" : "eye-off"}
+          name={secureEye ? 'eye' : 'eye-off'}
           type="ionicons"
-          onPress={() => setSecureEye((prev) => !prev)}
+          onPress={() => setSecureEye(prev => !prev)}
         />
       );
     }
@@ -155,7 +155,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
 
   const _renderInput = () => {
     return (
-      <TextInputMask
+      <TextInput
         autoCapitalize="none"
         allowFontScaling={false}
         underlineColorAndroid="transparent"
@@ -171,9 +171,9 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
         secureTextEntry={
           rightIcon ? props.secureTextEntry : props.secureTextEntry && secureEye
         }
-        ref={(e) => {
+        ref={e => {
           inputRef.current = e;
-          typeof ref === "function" && ref(e);
+          typeof ref === 'function' && ref(e);
         }}
       />
     );
@@ -181,7 +181,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
 
   const _renderHint = () => {
     return (
-      <Text margin={{ left: 4 }} color="placeholder">
+      <Text margin={{left: 4}} color="placeholder">
         {`${value.length}/${maxLength}`}
       </Text>
     );
@@ -193,8 +193,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
       <TouchableWithoutFeedback
         onPress={() => {
           inputRef.current?.focus();
-        }}
-      >
+        }}>
         <Block
           row
           align="center"
@@ -209,8 +208,7 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
                 ? Colors.primary
                 : Colors.border,
           }}
-          style={inputContainerStyle}
-        >
+          style={inputContainerStyle}>
           {leftIcon && _renderIcon()}
           {_renderInput()}
           {(rightIcon || props.secureTextEntry) && _renderIcon(true)}
@@ -218,10 +216,9 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
       </TouchableWithoutFeedback>
       <Block
         row
-        justify={showError && error ? "space-between" : "flex-end"}
+        justify={showError && error ? 'space-between' : 'flex-end'}
         align="flex-start"
-        margin={{ top: 4 }}
-      >
+        margin={{top: 4}}>
         {showError && error && _renderError()}
         {!!maxLength && _renderHint()}
       </Block>
@@ -229,4 +226,4 @@ const TextInput = forwardRef<any, InputProps>((props, ref) => {
   );
 });
 
-export default TextInput;
+export default Input;
